@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --background: 222 47% 5%;
+  --foreground: 210 40% 98%;
+  --card: 222 38% 8%;
+  --card-foreground: 210 40% 98%;
+  --muted: 220 24% 13%;
+  --muted-foreground: 218 14% 70%;
+  --primary: 174 84% 50%;
+  --primary-foreground: 222 47% 5%;
+  --secondary: 263 80% 64%;
+  --secondary-foreground: 210 40% 98%;
+  --accent: 213 94% 68%;
+  --accent-foreground: 222 47% 5%;
+  --destructive: 0 75% 58%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 215 22% 20%;
+  --input: 215 22% 20%;
+  --ring: 174 84% 50%;
+  --radius: 0.5rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    linear-gradient(128deg, rgba(20, 184, 166, 0.14), transparent 34%),
+    linear-gradient(232deg, rgba(139, 92, 246, 0.13), transparent 42%),
+    linear-gradient(180deg, #050814 0%, #08111f 45%, #050814 100%);
+  color: hsl(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+body::selection {
+  background: rgba(45, 212, 191, 0.35);
+  color: white;
+}
+
+button,
+a,
+input,
+textarea {
+  outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  [role="button"] {
+    cursor: none;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.045));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 80px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(22px);
+}
+
+.noise-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.055;
+  background-image:
+    linear-gradient(rgba(255,255,255,.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.45) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+}
+
+.grid-mask {
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.85), transparent 88%);
+}
+
+.aurora-layer {
+  background:
+    linear-gradient(115deg, rgba(45, 212, 191, 0.16), transparent 36%),
+    linear-gradient(245deg, rgba(96, 165, 250, 0.15), transparent 42%),
+    linear-gradient(15deg, rgba(168, 85, 247, 0.15), transparent 38%);
+  filter: blur(34px);
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #e8f6ff, #5eead4, #c084fc, #93c5fd, #e8f6ff);
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 8s linear infinite;
+}
+
+.section-shell {
+  position: relative;
+  z-index: 10;
+  margin-inline: auto;
+  width: min(100% - 2rem, 1180px);
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-110%);
+  background-image: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+  animation: scan 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
