@@ -23,7 +23,7 @@ export type TechStackItem = {
 export const socialLinks = [
   { label: "GitHub", href: "https://github.com/jaredofff?tab=repositories", handle: "jaredofff" },
   { label: "Comunidad Discord", href: "https://discord.gg/Tvhg65bTRE", handle: "MC Market" },
-  { label: "Correo", href: "mailto:hello@onzestudio.dev", handle: "hello@onzestudio.dev" },
+  { label: "Correo", href: "mailto:sierraeuan@gmail.com", handle: "sierraeuan@gmail.com" },
 ];
 
 export const techStack: TechStackItem[] = [
