@@ -4,6 +4,9 @@
   "name": "onzestudio",
   "compatibility_date": "2026-05-29",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "build": {
+    "command": "pnpm opennextjs-cloudflare build"
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
