@@ -126,3 +126,5 @@ export const navigation = [
   { label: "Experiencia", id: "experience" },
   { label: "Contacto", id: "contact" },
 ];
+
+export type NavEntry = { label: string; id: string } | string;

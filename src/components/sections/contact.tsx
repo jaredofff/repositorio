@@ -29,6 +29,26 @@ const contactLinks = [
   },
 ];
 
+const contactEmail = "sierraeuan@gmail.com";
+
+function buildMailtoLink(payload: {
+  name: string | null;
+  email: string | null;
+  project: string | null;
+  message: string | null;
+}) {
+  const subject = `Consulta sobre ${payload.project?.trim() || "tu proyecto"}`;
+  const body = [
+    `Nombre: ${payload.name?.trim() || "(no especificado)"}`,
+    `Correo: ${payload.email?.trim() || "(no especificado)"}`,
+    `Proyecto: ${payload.project?.trim() || "(no especificado)"}`,
+    "",
+    payload.message?.trim() || "(no especificado)",
+  ].join("\n");
+
+  return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -62,9 +82,12 @@ export function Contact() {
 
       setStatus("success");
       (event.currentTarget as HTMLFormElement).reset();
-    } catch (err) {
-      setErrorMessage("Error de red al enviar el formulario.");
-      setStatus("error");
+    } catch (error) {
+      console.error("Contact form error:", error);
+      window.location.href = buildMailtoLink(payload);
+      setErrorMessage(null);
+      setStatus("success");
+      (event.currentTarget as HTMLFormElement).reset();
     }
   }
 
@@ -138,14 +161,12 @@ export function Contact() {
                   <>Enviando...</>
                 ) : (
                   <>
-                    Enviar consulta
+                    Abrir correo
                     <Send className="h-4 w-4" aria-hidden="true" />
                   </>
                 )}
               </Button>
-              {status === "error" && (
-                <div className="text-sm text-rose-400">{errorMessage}</div>
-              )}
+              {status === "error" && <div className="text-sm text-rose-400">{errorMessage}</div>}
             </div>
           </div>
         </motion.form>

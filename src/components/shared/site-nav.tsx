@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Code2, Github } from "lucide-react";
 import { navigation } from "@/lib/portfolio-data";
+import type { NavEntry } from "@/lib/portfolio-data";
 import { Button } from "@/components/ui/button";
 
 export function SiteNav() {
@@ -21,9 +22,9 @@ export function SiteNav() {
           <span className="hidden text-sm font-semibold text-white sm:block">Onze Studio</span>
         </a>
         <div className="hidden items-center gap-1 lg:flex">
-          {(navigation as any).map((item: any) => {
-            const label = typeof item === "string" ? item : item?.label ?? String(item);
-            const id = typeof item === "string" ? label.toLowerCase().replace(/\s+/g, "") : item?.id ?? label.toLowerCase().replace(/\s+/g, "");
+          {navigation.map((item: NavEntry) => {
+            const label = typeof item === "string" ? item : item.label;
+            const id = typeof item === "string" ? label.toLowerCase().replace(/\s+/g, "") : item.id;
             return (
               <a
                 key={id}
